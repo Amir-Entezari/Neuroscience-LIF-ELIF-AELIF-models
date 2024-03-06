@@ -16,7 +16,8 @@ class LIF(Behavior):
         self.threshold = self.parameter("threshold", None, required=True)
         self.ratio = self.parameter("ratio", 1.1)
         # initial value of u in neurons
-        ng.u = ng.vector("uniform") * (self.threshold - self.u_rest) * self.ratio
+        ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
+        ng.u += self.u_reset
         ng.spike = ng.u > self.threshold
         ng.u[ng.spike] = self.u_reset
 
@@ -34,4 +35,3 @@ class LIF(Behavior):
         ng.spike = ng.u > self.threshold
         # Reset
         ng.u[ng.spike] = self.u_reset
-
