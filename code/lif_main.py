@@ -3,8 +3,8 @@ import torch
 
 import matplotlib.pyplot as plt
 
-from hw1.code.current import ConstantCurrent
-from hw1.code.lif import LIF
+from hw1.code.currents import ConstantCurrent
+from hw1.code.models import LIF
 from hw1.code.time_res import TimeResolution
 
 net = Network(behavior={1: TimeResolution(dt=1.0), })
