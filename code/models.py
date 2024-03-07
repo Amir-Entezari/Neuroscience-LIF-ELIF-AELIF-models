@@ -69,3 +69,48 @@ class ELIF(Behavior):
     def F(self, u):
         leakage = u - self.u_rest
         return -leakage + self.delta_T * torch.exp((u - self.rh_threshold) / self.delta_T)
+
+
+class AELIF(Behavior):
+    def initialize(self, ng):
+        self.a = self.parameter("a", None, required=True)
+        self.b = self.parameter("b", None, required=True)
+        self.R = self.parameter("R", None, required=True)
+        self.tau_m = self.parameter("tau_m", None, required=True)
+        self.tau_w = self.parameter("tau_w", None, required=True)
+        self.u_rest = self.parameter("u_rest", None, required=True)
+        self.u_reset = self.parameter("u_reset", None, required=True)
+        self.ratio = self.parameter("ratio", 1.0)
+        self.threshold = self.parameter("threshold", None, required=True)
+        self.rh_threshold = self.parameter("rh_threshold", None, required=True)
+        self.delta_T = self.parameter("delta_T", None, required=True)
+
+        ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
+        ng.u += self.u_reset
+        ng.spike = ng.u > self.threshold
+        ng.u[ng.spike] = self.u_reset
+
+        ng.w = ng.vector()
+
+    def forward(self, ng):
+        # Neuron dynamic
+        F = self.F(ng.u)
+        inp_u = self.R * ng.I
+        ng.u += ((F - self.R * ng.w + inp_u) / self.tau_m) * ng.network.dt
+
+        # Firing
+        ng.spike = ng.u > self.threshold
+
+        # Reset
+        ng.u[ng.spike] = self.u_reset
+
+        # Update w
+        self.update_w(ng)
+
+    def F(self, u):
+        leakage = u - self.u_rest
+        return -leakage + self.delta_T * torch.exp((u - self.rh_threshold) / self.delta_T)
+
+    def update_w(self, ng):
+        leakage = ng.u - self.u_rest
+        ng.w += ((self.a * leakage - ng.w + self.b * self.tau_w * ng.spike.byte()) / self.tau_w) * ng.network.dt
