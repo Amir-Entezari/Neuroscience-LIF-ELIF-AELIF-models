@@ -49,6 +49,24 @@ class Simulation:
 
         plt.show()
 
+    def plot_IF_curve(self, title: str=None, label:str=None, event_idx=5, current_idx=2, show=True):
+        frequencies = []
+        currents = []
+        for i, ng in enumerate(self.net.NeuronGroups):
+            spike_events = ng.behavior[event_idx].variables['spike']
+            frequencies.append(len(spike_events))
+            currents.append(ng.behavior[current_idx].init_kwargs['value'])
+        plt.plot(currents, frequencies, label=label)
+        plt.title(title)
+        plt.xlabel('Current (I)')
+        plt.ylabel('Frequency (f)')
+        plt.legend()
+        plt.grid(True)
+        if show:
+            plt.show()
+        else:
+            return plt
+
 
 class SimulateNeuronGroup:
     def __init__(self, net: Network = None, **kwargs):
