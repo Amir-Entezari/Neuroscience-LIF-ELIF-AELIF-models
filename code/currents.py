@@ -29,11 +29,12 @@ class StepCurrent(Behavior):
         ng.I = ng.vector()
 
     def forward(self, ng):
+        ng.I = ng.vector(0.0)
         if ng.network.iteration * ng.network.dt >= self.t_start:
             ng.I = ng.vector(mode=self.value)
-        if self.t_end:
-            if ng.network.iteration * ng.network.dt >= self.t_end:
-                ng.I = ng.vector(0.0)
+            if self.t_end:
+                if ng.network.iteration * ng.network.dt >= self.t_end:
+                    ng.I = ng.vector(0.0)
 
         self.add_noise(ng)
 
