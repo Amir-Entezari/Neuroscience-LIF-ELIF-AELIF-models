@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
+from pymonntorch import NeuronGroup
 
 
-def plot_membrane_potential(net, ng, ng_rec_name, title):
+def plot_membrane_potential(ng: NeuronGroup, ng_rec_name: str, title: str):
+    net = ng.network
     fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
 
     ax1.plot(net[ng_rec_name, 0].variables["u"][:, :3], label='potential')
