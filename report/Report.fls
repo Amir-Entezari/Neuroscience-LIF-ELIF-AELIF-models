@@ -482,6 +482,17 @@ INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
 INPUT /usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+INPUT /usr/share/texlive/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
 INPUT /usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
@@ -717,6 +728,9 @@ INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/amstext-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/amsthm-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/amsthm-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/amsthm-xetex-bidi.def
+INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/float-xetex-bidi.def
+INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/float-xetex-bidi.def
+INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/float-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/graphicx-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/graphicx-xetex-bidi.def
 INPUT /usr/share/texlive/texmf-dist/tex/xelatex/bidi/graphicx-xetex-bidi.def
@@ -845,9 +859,159 @@ INPUT plots/Simple LIF with constant current: change in I.pdf
 INPUT ./plots/LIF with step current.pdf
 INPUT ./plots/LIF with step current.pdf
 INPUT plots/LIF with step current.pdf
-INPUT ./plots/LIF with sin current.pdf
-INPUT ./plots/LIF with sin current.pdf
-INPUT plots/LIF with sin current.pdf
+INPUT ./plots/LIF with sin current (1).pdf
+INPUT ./plots/LIF with sin current (1).pdf
+INPUT plots/LIF with sin current (1).pdf
+INPUT ./plots/LIF with sin current (2).pdf
+INPUT ./plots/LIF with sin current (2).pdf
+INPUT plots/LIF with sin current (2).pdf
+INPUT ./plots/LIF with sin current (3).pdf
+INPUT ./plots/LIF with sin current (3).pdf
+INPUT plots/LIF with sin current (3).pdf
+INPUT ./plots/LIF with ramp current.pdf
+INPUT ./plots/LIF with ramp current.pdf
+INPUT plots/LIF with ramp current.pdf
+INPUT ./plots/LIF with log current.pdf
+INPUT ./plots/LIF with log current.pdf
+INPUT plots/LIF with log current.pdf
+INPUT ./plots/ELIF with const current.pdf
+INPUT ./plots/ELIF with const current.pdf
+INPUT plots/ELIF with const current.pdf
+INPUT ./plots/ELIF with const current: change in I.pdf
+INPUT ./plots/ELIF with const current: change in I.pdf
+INPUT plots/ELIF with const current: change in I.pdf
+INPUT ./plots/ELIF with const current: Decrease rh and increase Delta T.pdf
+INPUT ./plots/ELIF with const current: Decrease rh and increase Delta T.pdf
+INPUT plots/ELIF with const current: Decrease rh and increase Delta T.pdf
+INPUT ./plots/ELIF with step current.pdf
+INPUT ./plots/ELIF with step current.pdf
+INPUT plots/ELIF with step current.pdf
+INPUT ./plots/ELIF with step current: Change in Delta T.pdf
+INPUT ./plots/ELIF with step current: Change in Delta T.pdf
+INPUT plots/ELIF with step current: Change in Delta T.pdf
+INPUT ./plots/ELIF with sin current.pdf
+INPUT ./plots/ELIF with sin current.pdf
+INPUT plots/ELIF with sin current.pdf
+INPUT ./plots/ELIF with ramp current.pdf
+INPUT ./plots/ELIF with ramp current.pdf
+INPUT plots/ELIF with ramp current.pdf
+INPUT ./plots/ELIF with log current.pdf
+INPUT ./plots/ELIF with log current.pdf
+INPUT plots/ELIF with log current.pdf
+INPUT ./plots/AELIF with const current.pdf
+INPUT ./plots/AELIF with const current.pdf
+INPUT plots/AELIF with const current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with constant current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with constant current.pdf
+INPUT plots/Adaptation variable w for AELIF model with constant current.pdf
+INPUT ./plots/AELIF with high const current.pdf
+INPUT ./plots/AELIF with high const current.pdf
+INPUT plots/AELIF with high const current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with high constant current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with high constant current.pdf
+INPUT plots/Adaptation variable w for AELIF model with high constant current.pdf
+INPUT ./plots/AELIF with high const current: change in tau_w.pdf
+INPUT ./plots/AELIF with high const current: change in tau_w.pdf
+INPUT plots/AELIF with high const current: change in tau_w.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with constant current: change in tau_w.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with constant current: change in tau_w.pdf
+INPUT plots/Adaptation variable w for AELIF model with constant current: change in tau_w.pdf
+INPUT ./plots/AELIF with step current.pdf
+INPUT ./plots/AELIF with step current.pdf
+INPUT plots/AELIF with step current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with step current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with step current.pdf
+INPUT plots/Adaptation variable w for AELIF model with step current.pdf
+INPUT ./plots/AELIF with sin current.pdf
+INPUT ./plots/AELIF with sin current.pdf
+INPUT plots/AELIF with sin current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with sin current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with sin current.pdf
+INPUT plots/Adaptation variable w for AELIF model with sin current.pdf
+INPUT ./plots/AELIF with ramp current.pdf
+INPUT ./plots/AELIF with ramp current.pdf
+INPUT plots/AELIF with ramp current.pdf
+INPUT ./plots/AELIF with log current.pdf
+INPUT ./plots/AELIF with log current.pdf
+INPUT plots/AELIF with log current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with log current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with log current.pdf
+INPUT plots/Adaptation variable w for AELIF model with log current.pdf
+INPUT ./plots/LIF with const and noise current.pdf
+INPUT ./plots/LIF with const and noise current.pdf
+INPUT plots/LIF with const and noise current.pdf
+INPUT ./plots/LIF with const and extreme noise current.pdf
+INPUT ./plots/LIF with const and extreme noise current.pdf
+INPUT plots/LIF with const and extreme noise current.pdf
+INPUT ./plots/LIF with step and noise current.pdf
+INPUT ./plots/LIF with step and noise current.pdf
+INPUT plots/LIF with step and noise current.pdf
+INPUT ./plots/LIF with sin and noise current.pdf
+INPUT ./plots/LIF with sin and noise current.pdf
+INPUT plots/LIF with sin and noise current.pdf
+INPUT ./plots/LIF with brownian_noise current.pdf
+INPUT ./plots/LIF with brownian_noise current.pdf
+INPUT plots/LIF with brownian_noise current.pdf
+INPUT ./plots/ELIF with const and noise current.pdf
+INPUT ./plots/ELIF with const and noise current.pdf
+INPUT plots/ELIF with const and noise current.pdf
+INPUT ./plots/ELIF with step and noise current.pdf
+INPUT ./plots/ELIF with step and noise current.pdf
+INPUT plots/ELIF with step and noise current.pdf
+INPUT ./plots/ELIF with sin and noise current.pdf
+INPUT ./plots/ELIF with sin and noise current.pdf
+INPUT plots/ELIF with sin and noise current.pdf
+INPUT ./plots/ELIF brownian noise current.pdf
+INPUT ./plots/ELIF brownian noise current.pdf
+INPUT plots/ELIF brownian noise current.pdf
+INPUT ./plots/AELIF const and noise current.pdf
+INPUT ./plots/AELIF const and noise current.pdf
+INPUT plots/AELIF const and noise current.pdf
+INPUT ./plots/AELIF with step current and noise current.pdf
+INPUT ./plots/AELIF with step current and noise current.pdf
+INPUT plots/AELIF with step current and noise current.pdf
+INPUT ./plots/AELIF with sin current and noise current.pdf
+INPUT ./plots/AELIF with sin current and noise current.pdf
+INPUT plots/AELIF with sin current and noise current.pdf
+INPUT ./plots/AELIF with brown noise current.pdf
+INPUT ./plots/AELIF with brown noise current.pdf
+INPUT plots/AELIF with brown noise current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with brownian noise current.pdf
+INPUT ./plots/Adaptation variable w for AELIF model with brownian noise current.pdf
+INPUT plots/Adaptation variable w for AELIF model with brownian noise current.pdf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT ./plots/LIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/LIF: I-F curve for constant and noisy currents.pdf
+INPUT plots/LIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/ELIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/ELIF: I-F curve for constant and noisy currents.pdf
+INPUT plots/ELIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/AELIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/AELIF: I-F curve for constant and noisy currents.pdf
+INPUT plots/AELIF: I-F curve for constant and noisy currents.pdf
+INPUT ./plots/LIF with constant current and refractory period as parameter.pdf
+INPUT ./plots/LIF with constant current and refractory period as parameter.pdf
+INPUT plots/LIF with constant current and refractory period as parameter.pdf
+INPUT ./plots/LIF with constant current and refractory period as behavior.pdf
+INPUT ./plots/LIF with constant current and refractory period as behavior.pdf
+INPUT plots/LIF with constant current and refractory period as behavior.pdf
+INPUT ./plots/LIF with sin current and refractory period as parameter.pdf
+INPUT ./plots/LIF with sin current and refractory period as parameter.pdf
+INPUT plots/LIF with sin current and refractory period as parameter.pdf
+INPUT ./plots/ELIF with refractory period as parameter.pdf
+INPUT ./plots/ELIF with refractory period as parameter.pdf
+INPUT plots/ELIF with refractory period as parameter.pdf
+INPUT ./plots/AELIF with refractory period as parameter.pdf
+INPUT ./plots/AELIF with refractory period as parameter.pdf
+INPUT plots/AELIF with refractory period as parameter.pdf
+INPUT ./plots/AELIF with refractory period as parameter and low value.pdf
+INPUT ./plots/AELIF with refractory period as parameter and low value.pdf
+INPUT plots/AELIF with refractory period as parameter and low value.pdf
 INPUT Report.aux
 INPUT ./Report.out
 INPUT ./Report.out
