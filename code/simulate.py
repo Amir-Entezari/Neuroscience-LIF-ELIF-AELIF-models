@@ -21,15 +21,15 @@ class Simulation:
         self.net.initialize()
         self.net.simulate_iterations(iterations=iterations)
 
-    def plot_membrane_potential(self, title: str, model_idx: int = 3):
+    def plot_membrane_potential(self, title: str, model_idx: int = 3, record_idx=4):
         num_ng = len(self.net.NeuronGroups)
         legend_position = (0, -0.2) if num_ng < 2 else (1.05, 1)
         # Generate colors for each neuron
         colors = plt.cm.jet(np.linspace(0, 1, num_ng))
         fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
         for i, ng in enumerate(self.net.NeuronGroups):
-            ax1.plot(ng.behavior[4].variables["u"][:, :1], color=colors[i], label='potential')
-            ax2.plot(ng.behavior[4].variables["I"][:, :1], color=colors[i], label=f"{ng.tag} current")
+            ax1.plot(ng.behavior[record_idx].variables["u"][:, :1], color=colors[i], label='potential')
+            ax2.plot(ng.behavior[record_idx].variables["I"][:, :1], color=colors[i], label=f"{ng.tag} current")
 
             ax1.axhline(y=ng.behavior[model_idx].init_kwargs['threshold'], color='red', linestyle='--',
                         label=f'{ng.tag} Threshold')
