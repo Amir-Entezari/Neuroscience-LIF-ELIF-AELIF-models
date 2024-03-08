@@ -65,7 +65,7 @@ class Simulation:
         # Generate colors for each neuron
         colors = plt.cm.jet(np.linspace(0, 1, num_ng))
         for i, ng in enumerate(self.net.NeuronGroups):
-            plt.plot(ng.behavior[record_idx].variables["w"][:, :1], color=colors[i], label='adaptation')
+            plt.plot(ng.behavior[record_idx].variables["w"][:, :1], color=colors[i], label=f'{ng.tag} adaptation')
 
         plt.xlabel('Time')
         plt.ylabel('w')
