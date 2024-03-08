@@ -22,28 +22,29 @@ class Simulation:
         self.net.simulate_iterations(iterations=iterations)
 
     def plot_membrane_potential(self, title: str, model_idx: int = 3):
-        net = self.net
-        num_neurons = len(net.NeuronGroups)
+        num_ng = len(self.net.NeuronGroups)
+        legend_position = (0, -0.2) if num_ng < 2 else (1.05, 1)
         # Generate colors for each neuron
-        colors = plt.cm.jet(np.linspace(0, 1, num_neurons))
+        colors = plt.cm.jet(np.linspace(0, 1, num_ng))
         fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
-        for i, ng in enumerate(net.NeuronGroups):
+        for i, ng in enumerate(self.net.NeuronGroups):
             ax1.plot(ng.behavior[4].variables["u"][:, :1], color=colors[i], label='potential')
-            ax1.axhline(y=ng.behavior[model_idx].init_kwargs['threshold'], linestyle='--',
+            ax2.plot(ng.behavior[4].variables["I"][:, :1], color=colors[i], label=f"{ng.tag} current")
+
+            ax1.axhline(y=ng.behavior[model_idx].init_kwargs['threshold'], color='red', linestyle='--',
                         label=f'{ng.tag} Threshold')
             ax1.axhline(y=ng.behavior[model_idx].init_kwargs['u_reset'], color='black', linestyle='--',
                         label=f'{ng.tag} u_reset')
-            ax2.plot(ng.behavior[4].variables["I"][:, :1], color=colors[i], label=f"{ng.tag} current")
 
         ax1.set_xlabel('Time')
         ax1.set_ylabel('u(t)')
         ax1.set_title(f'Membrane Potential')
-        ax1.legend(loc='upper left', bbox_to_anchor=(1.05, 1), fontsize='small')
+        ax1.legend(loc='upper left', bbox_to_anchor=legend_position, fontsize='small')
 
         ax2.set_xlabel('Time')
         ax2.set_ylabel("I(t)")
         ax2.set_title('Current')
-        ax2.legend(loc='upper left', bbox_to_anchor=(1.05, 1), fontsize='small')
+        ax2.legend(loc='upper left', bbox_to_anchor=legend_position, fontsize='small')
         fig.suptitle(title)
         plt.tight_layout()
 
