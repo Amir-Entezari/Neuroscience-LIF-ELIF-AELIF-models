@@ -1,6 +1,7 @@
 from pymonntorch import *
 from plots import plot_membrane_potential
 import torch
+import matplotlib.pyplot as plt
 
 
 class Simulation:
@@ -10,12 +11,11 @@ class Simulation:
             self.net = net
         else:
             self.net = Network()
-        self.neuron_groups = {}
 
-    def add_neuron_group(self, ng_id, **kwargs):
-        if ng_id in self.neuron_groups.keys():
+    def add_neuron_group(self, tag, **kwargs):
+        if tag in [ng.tag for ng in self.net.NeuronGroups]:
             raise Exception("The neuron group's id already exist.")
-        self.neuron_groups[ng_id] = NeuronGroup(net=self.net, **kwargs)
+        NeuronGroup(net=self.net, tag=tag, **kwargs)
 
     def simulate(self, iterations=100):
         self.net.initialize()
