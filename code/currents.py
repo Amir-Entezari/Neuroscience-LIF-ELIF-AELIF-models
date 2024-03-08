@@ -1,5 +1,6 @@
 import math
 
+import numpy
 import torch
 from pymonntorch import *
 
@@ -7,7 +8,15 @@ from pymonntorch import *
 class ConstantCurrent(Behavior):
     def initialize(self, ng):
         self.value = self.parameter("value", None, required=True)
+        self.noise_range = self.parameter("noise_range", 0.0)
         ng.I = ng.vector(self.value)
+
+    def forward(self, ng):
+        ng.I = ng.vector(self.value)
+        self.add_noise(ng)
+
+    def add_noise(self, ng):
+        ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
 
 
 class StepCurrent(Behavior):
@@ -15,6 +24,8 @@ class StepCurrent(Behavior):
         self.value = self.parameter("value", None, required=True)
         self.t_start = self.parameter("t_start", required=True)
         self.t_end = self.parameter("t_end", None)
+        self.noise_range = self.parameter("noise_range", 0.0)
+
         ng.I = ng.vector()
 
     def forward(self, ng):
@@ -24,6 +35,11 @@ class StepCurrent(Behavior):
             if ng.network.iteration * ng.network.dt >= self.t_end:
                 ng.I = ng.vector(0.0)
 
+        self.add_noise(ng)
+
+    def add_noise(self, ng):
+        ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
+
 
 class SinCurrent(Behavior):
     def initialize(self, ng):
@@ -31,6 +47,7 @@ class SinCurrent(Behavior):
         self.frequency = self.parameter("frequency", None, required=True)
         self.phase = self.parameter("phase", 0.0)
         self.offset = self.parameter("offset", 0.0)
+        self.noise_range = self.parameter("noise_range", 0.0)
 
         t = ng.network.iteration * ng.network.dt
         ng.I = ng.vector()
@@ -38,16 +55,27 @@ class SinCurrent(Behavior):
     def forward(self, ng):
         t = ng.network.iteration * ng.network.dt
         ng.I = torch.sin(ng.vector(self.frequency * t) + self.phase) * self.amplitude + self.offset
+        self.add_noise(ng)
+
+    def add_noise(self, ng):
+        ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
+
 
 
 class RampCurrent(Behavior):
     def initialize(self, ng):
         self.slope = self.parameter("slope", None, required=True)
+        self.noise_range = self.parameter("noise_range", 0.0)
+
         ng.I = ng.vector()
 
     def forward(self, ng):
         t = ng.network.dt
         ng.I += self.slope * t
+        self.add_noise(ng)
+
+    def add_noise(self, ng):
+        ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
 
 
 # class ExpDecayCurrent(Behavior):
