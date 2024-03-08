@@ -10,15 +10,19 @@ class ConstantCurrent(Behavior):
         ng.I = ng.vector(self.value)
 
 
-class StepFunctionCurrent(Behavior):
+class StepCurrent(Behavior):
     def initialize(self, ng):
-        self.value = self.parameter("value")
-        self.t0 = self.parameter("t0")
+        self.value = self.parameter("value", None, required=True)
+        self.t_start = self.parameter("t_start", required=True)
+        self.t_end = self.parameter("t_end", None)
         ng.I = ng.vector()
 
     def forward(self, ng):
-        if ng.network.iteration * ng.network.dt >= self.t0:
+        if ng.network.iteration * ng.network.dt >= self.t_start:
             ng.I = ng.vector(mode=self.value)
+        if self.t_end:
+            if ng.network.iteration * ng.network.dt >= self.t_end:
+                ng.I = ng.vector(0.0)
 
 
 class SinCurrent(Behavior):
