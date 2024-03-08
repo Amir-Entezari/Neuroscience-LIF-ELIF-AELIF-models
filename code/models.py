@@ -48,6 +48,7 @@ class ELIF(Behavior):
         self.threshold = self.parameter("threshold", None, required=True)
         self.rh_threshold = self.parameter("rh_threshold", None, required=True)
         self.delta_T = self.parameter("delta_T", None, required=True)
+        self.ratio = self.parameter("ratio", 1.0)
 
         ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
         ng.u += self.u_reset
