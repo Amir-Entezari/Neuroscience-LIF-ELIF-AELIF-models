@@ -44,7 +44,6 @@ class ELIF(Behavior):
         self.tau = self.parameter("tau", None, required=True)
         self.u_rest = self.parameter("u_rest", None, required=True)
         self.u_reset = self.parameter("u_reset", None, required=True)
-        self.ratio = self.parameter("ratio", 1.0, required=True)
         self.threshold = self.parameter("threshold", None, required=True)
         self.rh_threshold = self.parameter("rh_threshold", None, required=True)
         self.delta_T = self.parameter("delta_T", None, required=True)
