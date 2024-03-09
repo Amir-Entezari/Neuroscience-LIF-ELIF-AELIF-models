@@ -153,3 +153,13 @@ class NoisyCurrent(Behavior):
 
         return scaled_brownian_noise
 
+
+class RefractoryPeriod(Behavior):
+    def initialize(self, ng):
+        self.refractory_T = self.parameter("refractory_T", None, required=True) / ng.network.dt
+
+        if not hasattr(ng, 'last_spike'):
+            ng.last_spike = ng.vector(-self.refractory_T - 1)
+
+    def forward(self, ng):
+        ng.I = ng.I * (ng.last_spike < ng.network.iteration - self.refractory_T).byte()
