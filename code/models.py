@@ -15,12 +15,16 @@ class LIF(Behavior):
         self.u_rest = self.parameter("u_rest", None, required=True)
         self.u_reset = self.parameter("u_reset", None, required=True)
         self.threshold = self.parameter("threshold", None, required=True)
+        self.refractory_T = self.parameter("refractory_T", 0) / ng.network.dt
         self.ratio = self.parameter("ratio", 1.1)
         # initial value of u in neurons
         ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
         ng.u += self.u_reset
         ng.spike = ng.u > self.threshold
         ng.u[ng.spike] = self.u_reset
+
+        if not hasattr(ng, 'last_spike'):
+            ng.last_spike = ng.vector(-self.refractory_T - 1)
 
     def forward(self, ng):
         """
@@ -29,13 +33,15 @@ class LIF(Behavior):
         :return: None
         """
         # Neuron dynamic
+        inp_u = self.R * ng.I * (ng.last_spike < ng.network.iteration - self.refractory_T).byte()
         leakage = ng.u - self.u_rest
-        inp_u = self.R * ng.I
         ng.u += ((-leakage + inp_u) / self.tau) * ng.network.dt
         # Firing
         ng.spike = ng.u > self.threshold
         # Reset
         ng.u[ng.spike] = self.u_reset
+        # Save last spike
+        ng.last_spike[ng.spike] = ng.network.iteration
 
 
 class ELIF(Behavior):
@@ -47,6 +53,7 @@ class ELIF(Behavior):
         self.threshold = self.parameter("threshold", None, required=True)
         self.rh_threshold = self.parameter("rh_threshold", None, required=True)
         self.delta_T = self.parameter("delta_T", None, required=True)
+        self.refractory_T = self.parameter("refractory_T", 0) / ng.network.dt
         self.ratio = self.parameter("ratio", 1.0)
 
         ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
@@ -54,10 +61,13 @@ class ELIF(Behavior):
         ng.spike = ng.u > self.threshold
         ng.u[ng.spike] = self.u_reset
 
+        if not hasattr(ng, 'last_spike'):
+            ng.last_spike = ng.vector(-self.refractory_T - 1)
+
     def forward(self, ng):
         # Neuron dynamic
         F = self.F(ng.u)
-        inp_u = self.R * ng.I
+        inp_u = self.R * ng.I * (ng.last_spike < ng.network.iteration - self.refractory_T).byte()
         ng.u += ((F + inp_u) / self.tau) * ng.network.dt
 
         # Firing
@@ -65,6 +75,9 @@ class ELIF(Behavior):
 
         # Reset
         ng.u[ng.spike] = self.u_reset
+
+        # Save last spike
+        ng.last_spike[ng.spike] = ng.network.iteration
 
     def F(self, u):
         leakage = u - self.u_rest
@@ -80,22 +93,26 @@ class AELIF(Behavior):
         self.tau_w = self.parameter("tau_w", None, required=True)
         self.u_rest = self.parameter("u_rest", None, required=True)
         self.u_reset = self.parameter("u_reset", None, required=True)
-        self.ratio = self.parameter("ratio", 1.0)
         self.threshold = self.parameter("threshold", None, required=True)
         self.rh_threshold = self.parameter("rh_threshold", None, required=True)
         self.delta_T = self.parameter("delta_T", None, required=True)
+        self.refractory_T = self.parameter("refractory_T", 0) / ng.network.dt
+        self.ratio = self.parameter("ratio", 1.0)
 
         ng.u = ng.vector("uniform") * (self.threshold - self.u_reset) * self.ratio
         ng.u += self.u_reset
-        ng.spike = ng.u > self.threshold
-        ng.u[ng.spike] = self.u_reset
 
         ng.w = ng.vector()
+
+        ng.spike = ng.u > self.threshold
+        ng.u[ng.spike] = self.u_reset
+        if not hasattr(ng, 'last_spike'):
+            ng.last_spike = ng.vector(-self.refractory_T - 1)
 
     def forward(self, ng):
         # Neuron dynamic
         F = self.F(ng.u)
-        inp_u = self.R * ng.I
+        inp_u = self.R * ng.I * (ng.last_spike < ng.network.iteration - self.refractory_T).byte()
         ng.u += ((F - self.R * ng.w + inp_u) / self.tau_m) * ng.network.dt
 
         # Firing
@@ -106,6 +123,9 @@ class AELIF(Behavior):
 
         # Update w
         self.update_w(ng)
+
+        # Save last spike
+        ng.last_spike[ng.spike] = ng.network.iteration
 
     def F(self, u):
         leakage = u - self.u_rest
