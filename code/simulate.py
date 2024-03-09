@@ -103,17 +103,36 @@ class Simulation:
             return plt
 
 
-class SimulateNeuronGroup:
-    def __init__(self, net: Network = None, **kwargs):
-        self.net: Network
-        if net:
-            self.net = net
-        else:
-            self.net = Network()
-        self.ng = NeuronGroup(
-            net=self.net,
-            **kwargs
-        )
+class SimulateNeuronGroup(NeuronGroup):
+    def plot_membrane_potential(self, title: str,
+                                model_idx: int = 3,
+                                record_idx=4,
+                                save: bool = None,
+                                filename: str = None):
+        fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True)
+
+        ax1.plot(self.behavior[record_idx].variables["u"][:, :1], label=f'potential')
+        ax2.plot(self.behavior[record_idx].variables["I"][:, :1], label=f"current")
+
+        ax1.axhline(y=self.behavior[model_idx].init_kwargs['threshold'], color='red', linestyle='--',
+                    label=f'{self.tag} Threshold')
+        ax1.axhline(y=self.behavior[model_idx].init_kwargs['u_reset'], color='black', linestyle='--',
+                    label=f'{self.tag} u_reset')
+
+        ax1.set_xlabel('Time')
+        ax1.set_ylabel('u(t)')
+        ax1.set_title(f'Membrane Potential')
+        ax1.legend()
+
+        ax2.set_xlabel('Time')
+        ax2.set_ylabel("I(t)")
+        ax2.set_title('Current')
+        ax2.legend()
+        fig.suptitle(title)
+        plt.tight_layout()
+        if save:
+            plt.savefig(filename or title + '.pdf')
+        plt.show()
 
     def simulate(self, iterations=100):
         self.net.initialize()
