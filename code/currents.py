@@ -78,14 +78,14 @@ class RampCurrent(Behavior):
         ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
 
 
-# class ExpDecayCurrent(Behavior):
-#     def initialize(self, ng):
-#         self.base = self.parameter("base")
-#         ng.I = ng.vector()
-#
-#     def forward(self, ng):
-#         t = ng.network.iteration * ng.network.dt
-#         ng.I = self.base + torch.exp(ng.vector(t))
+class ExpCurrent(Behavior):
+    def initialize(self, ng):
+        self.base = self.parameter("base")
+        ng.I = ng.vector()
+
+    def forward(self, ng):
+        t = ng.network.iteration
+        ng.I = self.base + torch.exp(ng.vector(t))
 
 class LogCurrent(Behavior):
     def initialize(self, ng):
