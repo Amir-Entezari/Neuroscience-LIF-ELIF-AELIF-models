@@ -52,7 +52,28 @@ class Simulation:
         ax2.legend(loc='upper left', bbox_to_anchor=legend_position, fontsize='small')
         fig.suptitle(title)
         plt.tight_layout()
+        if save:
+            plt.savefig(filename or title + '.pdf')
+        plt.show()
 
+    def plot_w(self, title: str,
+               record_idx: int = 4,
+               save: bool = None,
+               filename: str = None):
+        num_ng = len(self.net.NeuronGroups)
+        legend_position = (0, -0.2) if num_ng < 2 else (1.05, 1)
+        # Generate colors for each neuron
+        colors = plt.cm.jet(np.linspace(0, 1, num_ng))
+        for i, ng in enumerate(self.net.NeuronGroups):
+            plt.plot(ng.behavior[record_idx].variables["w"][:, :1], color=colors[i], label='adaptation')
+
+        plt.xlabel('Time')
+        plt.ylabel('w')
+        plt.legend(loc='upper left', bbox_to_anchor=legend_position, fontsize='small')
+
+        plt.title(title)
+        if save:
+            plt.savefig(filename or title + '.pdf')
         plt.show()
 
     def plot_IF_curve(self, title: str = None,
