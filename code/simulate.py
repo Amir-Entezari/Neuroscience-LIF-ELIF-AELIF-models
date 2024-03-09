@@ -134,6 +134,18 @@ class SimulateNeuronGroup(NeuronGroup):
             plt.savefig(filename or title + '.pdf')
         plt.show()
 
-    def simulate(self, iterations=100):
-        self.net.initialize()
-        self.net.simulate_iterations(iterations=iterations)
+    def plot_w(self, title: str,
+               record_idx: int = 4,
+               save: bool = None,
+               filename: str = None):
+        # Generate colors for each neuron
+        plt.plot(self.behavior[record_idx].variables["w"][:, :1], label=f'adaptation')
+
+        plt.xlabel('Time')
+        plt.ylabel('w')
+        plt.legend(loc='upper left', fontsize='small')
+
+        plt.title(title)
+        if save:
+            plt.savefig(filename or title + '.pdf')
+        plt.show()
