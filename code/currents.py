@@ -61,7 +61,6 @@ class SinCurrent(Behavior):
         ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
 
 
-
 class RampCurrent(Behavior):
     def initialize(self, ng):
         self.slope = self.parameter("slope", None, required=True)
@@ -102,8 +101,6 @@ class LogCurrent(Behavior):
 
     def add_noise(self, ng):
         ng.I += (ng.vector("uniform") - 0.5) * self.noise_range
-
-
 
 
 class NoisyCurrent(Behavior):
